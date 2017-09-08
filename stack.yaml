@@ -1,0 +1,9 @@
+flags: {}
+extra-package-dbs: []
+packages:
+- '.'
+extra-deps:
+- monadplus-1.4.2
+- brick-0.24.1
+- word-wrap-0.4.1
+resolver: nightly-2017-08-25

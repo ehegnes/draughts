@@ -1,0 +1,126 @@
+name:                draughts
+version:             0.1.0.0
+synopsis:            Draughts application and library
+description:         Draughts application and library that allow two
+                     users to play remotely
+license:             GPL
+license-file:        LICENSE
+author:              Siddhanathan Shanmugam
+maintainer:          siddhanathan@gmail.com
+stability:           experimental
+copyright:           Copyright (C) 2017 Siddhanathan Shanmugam
+category:            Web
+build-type:          Simple
+cabal-version:       >=1.10
+extra-source-files:  README.md
+
+library
+  hs-source-dirs:      src
+  exposed-modules:     Draughts.Library.Board
+                       Draughts.Library.Board.Internal
+                       Draughts.Library.JSON
+                       Draughts.Library.Types
+  default-language:    Haskell2010
+  ghc-options:         -O2 -Wall -fwarn-tabs -Werror -Wcompat
+  build-depends:       base >= 4.10 && < 5,
+                       aeson,
+                       array,
+                       microlens,
+                       microlens-ghc,
+                       microlens-platform,
+                       microlens-th,
+                       monadplus,
+                       mtl,
+                       text
+
+executable server
+  hs-source-dirs:      src
+  main-is:             Server.hs
+  ghc-options:         -O2 -Wall -Werror -Wcompat
+                       -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  Other-Modules:       Draughts.Library.Board
+                       Draughts.Library.Board.Internal
+                       Draughts.Library.JSON
+                       Draughts.Library.Types
+  build-depends:       base >= 4.10 && < 5,
+                       aeson,
+                       array,
+                       bytestring,
+                       draughts,
+                       microlens,
+                       microlens-ghc,
+                       microlens-platform,
+                       microlens-th,
+                       monad-loops,
+                       monadplus,
+                       mtl,
+                       optparse-generic,
+                       text,
+                       websockets
+
+executable client
+  hs-source-dirs:      src
+  main-is:             UI.hs
+  ghc-options:         -O2 -Wall -Werror -Wcompat
+                       -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  Other-Modules:       Draughts.Game
+                       Draughts.Library.Board
+                       Draughts.Library.Board.Internal
+                       Draughts.Library.JSON
+                       Draughts.Library.Types
+  build-depends:       base >= 4.10 && < 5,
+                       aeson,
+                       array,
+                       brick >= 0.24.1,
+                       bytestring,
+                       microlens,
+                       microlens-ghc,
+                       microlens-platform,
+                       microlens-th,
+                       monadplus,
+                       mtl,
+                       network,
+                       optparse-generic,
+                       safe,
+                       text,
+                       vty,
+                       websockets
+
+--executable schema
+--  hs-source-dirs:      src
+--  main-is:             Schema.hs
+--  ghc-options:         -O2 -Wcompat
+--                       -threaded -rtsopts -with-rtsopts=-N
+--  default-language:    Haskell2010
+--  Other-Modules:       Draughts.Library.Board,
+--                       Draughts.Library.Board.Internal
+--                       Draughts.Library.JSON
+--                       Draughts.Library.Types
+--  build-depends:       base >= 4.9 && < 5,
+--                       aeson,
+--                       array,
+--                       bytestring,
+--                       jsonschema-gen,
+--                       microlens,
+--                       microlens-ghc,
+--                       microlens-platform,
+--                       microlens-th,
+--                       monadplus,
+--                       mtl,
+--                       text
+
+test-suite draught-units
+  type:                exitcode-stdio-1.0
+  hs-source-dirs:      test
+  main-is:             Spec.hs
+  ghc-options:         -O2 -Wall -Werror -Wcompat
+                       -threaded -rtsopts -with-rtsopts=-N
+  default-language:    Haskell2010
+  Other-Modules:       Draughts.Library.BoardSpec
+  build-depends:       base >= 4.10 && < 5,
+                       array,
+                       draughts,
+                       hspec
+
