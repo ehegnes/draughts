@@ -29,7 +29,7 @@ import Lens.Micro.TH           (makeLenses)
 
 --------------------------------------------------------------------------------
 
--- | Th current Stage in the Game
+-- | The current Stage in the Game
 data Stage
     = WaitingForOtherPlayer
     | MoveInProgress
